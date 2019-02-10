@@ -11,13 +11,23 @@ class ShopsTableSeeder extends Seeder
      */
     public function run()
     {
+        $stores = array(
+            array('name'=>'Spar'),
+            array('name'=>'Checkers'),
+            array('name'=>'Pick n Pay'),
+            array('name'=>'Boxer'),
+        );
+        foreach ($stores as $store) {
+            \App\Stores::create($store);
+        }
+
         $locationsShop = array(
-            array('name'=>'Joburg Shops'),
-            array('name'=>'VAAL Shops'),
-            array('name'=>'PRETORIA Shops'),
+            array('name'=>'Joburg Shops','stores_id'=>rand(1,4)),
+            array('name'=>'VAAL Shops','stores_id'=>rand(1,4)),
+            array('name'=>'PRETORIA Shops','stores_id'=>rand(1,4)),
             array('name'=>'POLOKWANE Shops'),
-            array('name'=>'DURBAN Shops'),
-            array('name'=>'SOWETO Shops'),
+            array('name'=>'DURBAN Shops','stores_id'=>rand(1,4)),
+            array('name'=>'SOWETO Shops','stores_id'=>rand(1,4)),
 
         );
 

@@ -41,22 +41,8 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{route('home')}}" class="nav-link">Home</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
-        </ul>
 
-        <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
-            <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-navbar" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+        </ul>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -184,7 +170,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item  menu-open">
-                        <a href="{{route('home')}}" class="nav-link active">
+                        <a href="{{route('home')}}" class="nav-link {{Request::is('home')?'active':''}}">
                             <i class="nav-icon fa fa-dashboard"></i>
                             <p>
                                 Dashboard
@@ -194,10 +180,19 @@
 
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('rating')}}" class="nav-link">
+                        <a href="{{route('rating')}}" class="nav-link {{Request::is('rating')?'active':''}}">
                             <i class="nav-icon fa fa-th"></i>
                             <p>
                                 Shops Rating
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('questionnaire')}}" class="nav-link {{Request::is('questionnaire')?'active':''}}">
+
+                            <i class="nav-icon fa fa-question-circle"></i>
+                            <p>
+                                Questionnaire Management
                             </p>
                         </a>
                     </li>

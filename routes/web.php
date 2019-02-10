@@ -16,3 +16,4 @@ Auth::routes();
 Route::redirect('/','/home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/rating','LocationShopController@index')->name('rating');
+Route::get('/questionnaire','QuestionnaireController@index')->name('questionnaire');

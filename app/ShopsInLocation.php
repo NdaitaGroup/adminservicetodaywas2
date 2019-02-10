@@ -11,4 +11,13 @@ class ShopsInLocation extends Model
     public function LocationShop(){
         return $this->belongsTo(\App\LocationShop::class);
     }
+    public function user(){
+        return $this->hasMany(\App\User::class);
+    }
+    public function Questionnaires(){
+        return $this->hasMany(\App\Questionnaire::class);
+    }
+    public function RatingComments(){
+        return $this->hasMany(\App\RatingComment::class);
+    }
 }

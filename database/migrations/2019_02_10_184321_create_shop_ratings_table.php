@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocationShopsTable extends Migration
+class CreateShopRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateLocationShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('location_shops', function (Blueprint $table) {
+        Schema::create('shop_ratings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->unsignedInteger('stores_id');
+            $table->unsignedInteger('shops_in_locations_id');
+            $table->integer('rating');
+            $table->date('shop_rating_date');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateLocationShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_shops');
+        Schema::dropIfExists('shop_ratings');
     }
 }
