@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Rating System</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +30,7 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -187,6 +191,58 @@
                             </p>
                         </a>
                     </li>
+
+                     <li class="nav-item">
+                        <a href="{{route('comments')}}" class="nav-link {{Request::is('comments')?'active':''}}">
+                            <i class="nav-icon fa fa-comments"></i>
+                            <p>
+                               Comments
+                            </p>
+                        </a>
+                    </li>
+                    @can('isSuper')
+                        <li class="nav-item">
+                            <a href="{{route('add.user')}}" class="nav-link {{Request::is('add-user')?'active':''}}">
+                                <i class="nav-icon fa fa-user-circle-o"></i>
+                                <p>
+                                    Add Super Users
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('add.storeUsers')}}" class="nav-link {{Request::is('add-storeUsers')?'active':''}}">
+                                <i class="nav-icon fa fa-user-circle"></i>
+                                <p>
+                                    Add Store Users
+                                </p>
+                            </a>
+                        </li>
+                    <li class="nav-item">
+                        <a href="{{route('stores')}}" class="nav-link {{Request::is('stores')?'active':''}}">
+                            <i class="nav-icon fa fa-apple"></i>
+                            <p>
+                                Stores
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('location')}}" class="nav-link {{Request::is('location')?'active':''}}">
+                            <i class="nav-icon fa fa-compass"></i>
+                            <p>
+                                Locations
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('places')}}" class="nav-link {{Request::is('places')?'active':''}}">
+                            <i class="nav-icon fa fa-map-pin"></i>
+                            <p>
+                                Places
+                            </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('isAdmin')
                     <li class="nav-item">
                         <a href="{{route('questionnaire')}}" class="nav-link {{Request::is('questionnaire')?'active':''}}">
 
@@ -196,6 +252,7 @@
                             </p>
                         </a>
                     </li>
+                    @endcan
                     <li class="nav-item">
                         <a href="{{route('rating')}}" class="nav-link" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -239,10 +296,7 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Morris.js charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{asset('admin/plugins/morris/morris.min.js')}}"></script>
-<!-- Sparkline -->
+
 <script src="{{asset('admin/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->
 <script src="{{asset('admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
@@ -266,6 +320,100 @@
 <script src="{{asset('admin/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+@yield('script')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
+<script>
+    @if(Session::has('success'))
+        toastr.success("{{Session::get('success')}}");
+    @endif
+    @if(Session::has('error'))
+            toastr.error("{{Session::get('error')}}");
+            @endif
+    var ctx = document.getElementById("myChart");
+    var ctx2 = document.getElementById("myChart2");
+
+    axios.get('/getStats')
+        .then((response)=>{
+            console.log(response.data)
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Incomplete", "Complete"],
+                    datasets: [{
+                        label: 'Feedback',
+                        data: [response.data.incomplete, response.data.complete],
+                        backgroundColor: [
+                            'rgb(158, 34, 96)',
+                            'rgb(44, 169, 107)',
+
+
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        position:'right',
+                        labels: {
+                            fontColor: 'rgb(255, 99, 132)'
+                        }
+                    },
+                    title:{
+                        display:true,
+                        text:'Comments',
+                        fontSize:25
+                    }
+                }
+            });
+            var myChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ["Incomplete", "Complete"],
+                    datasets: [{
+                        label: 'Feedback',
+                        data: [response.data.incomplete, response.data.complete],
+                        backgroundColor: [
+                            'rgb(158, 34, 96)',
+                            'rgb(44, 169, 107)',
+
+
+                        ],
+
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    },
+
+                    title:{
+                        display:true,
+                        text:'Comments',
+                        fontSize:25
+                    }
+                }
+            });
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+</script>
+
+
 
 </body>
 </html>

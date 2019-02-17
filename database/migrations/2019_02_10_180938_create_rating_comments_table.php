@@ -17,6 +17,8 @@ class CreateRatingCommentsTable extends Migration
             $table->increments('id');
             $table->string('comments')->nullable();
             $table->unsignedInteger('shops_in_locations_id');
+            $table->date('comment_date');
+            $table->string('status')->default('incomplete');
             $table->bigInteger('otp');
             $table->timestamps();
         });

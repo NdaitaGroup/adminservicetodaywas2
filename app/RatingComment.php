@@ -8,6 +8,6 @@ class RatingComment extends Model
 {
     protected $guarded = [];
     public function ShopsInLocation(){
-        return $this->belongsTo(\App\ShopsInLocation::class);
+        return $this->belongsTo(\App\ShopsInLocation::class,'shops_in_locations_id');
     }
 }

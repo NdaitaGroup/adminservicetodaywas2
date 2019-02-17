@@ -13,7 +13,27 @@ class UsersTableSeeder extends Seeder
     {
         \App\User::create(['name'=>'Real Hlungwane',
             'email'=>'real@gmail.com',
-            'password'=>bcrypt('secret')
+            'password'=>bcrypt('secret'),
+            'user_type'=>'Super'
+        ]);
+
+
+        //Get Spar Location store
+        $location = DB::table('location_shops')->where('stores_id', 1)->first();
+        //get Shop In Location
+        $location = DB::table('shops_in_locations')->where('location_shop_id', $location->id)->first();
+
+        \App\User::create(['name'=>'Zwidofhela Phaswana',
+            'email'=>'Zwidomaluta@gmail.com',
+            'password'=>bcrypt('secret'),
+            'user_type'=>'Manager',
+            'shops_in_locations_id'=>$location->id,
+        ]);
+        \App\User::create(['name'=>'Gordon Matshwane',
+            'email'=>'gordonm87@gmail.com',
+            'password'=>bcrypt('secret'),
+            'user_type'=>'Admin',
+            'shops_in_locations_id'=>$location->id,
         ]);
     }
 }

@@ -1,10 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
-
-
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -31,11 +27,16 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="#">
+                        <form action="{{route('save.questionnaire')}}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="questionnaire">Questionnaire</label>
-                                <input type="text" name="questionnaire" id="questionnaire" class="form-control">
+                                <input type="text" name="questionnaire" id="questionnaire" class="form-control{{ $errors->has('questionnaire') ? ' is-invalid' : '' }}" value="{{ old('questionnaire') }}">
+                                @if ($errors->has('questionnaire'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('questionnaire') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="Save Questionnaire" class="btn btn-primary">
@@ -46,24 +47,27 @@
 
                         <table class="table table-hover table-bordered table-stripped">
                             <thead>
-                                <th>ID</th>
+
                                 <th>Questionnaire</th>
                                 <th>Status</th>
                                 <th>action</th>
                             </thead>
                             <tbody>
+                            @foreach($questionnaires as $question)
                             <tr>
-                                <td>11</td>
-                                <td>kkjkjk</td>
-                                <td>kkjkjk</td>
+
+                                <td>{{$question->questionnaire}}</td>
+                                <td>{{$question->status}}</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-info">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table>
+                        {{$questionnaires->links()}}
                     </div>
                 </div>
             </div><!-- /.container-fluid -->

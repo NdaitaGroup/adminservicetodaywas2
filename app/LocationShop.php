@@ -12,6 +12,6 @@ class LocationShop extends Model
         return $this->hasMany(\App\ShopsInLocation::class);
     }
     public function stores(){
-        return $this->belongsTo(\App\Stores::class);
+        return $this->belongsTo(\App\Stores::class,'stores_id');
     }
 }

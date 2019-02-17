@@ -25,7 +25,7 @@ class ShopsTableSeeder extends Seeder
             array('name'=>'Joburg Shops','stores_id'=>rand(1,4)),
             array('name'=>'VAAL Shops','stores_id'=>rand(1,4)),
             array('name'=>'PRETORIA Shops','stores_id'=>rand(1,4)),
-            array('name'=>'POLOKWANE Shops'),
+            array('name'=>'POLOKWANE Shops','stores_id'=>rand(1,4)),
             array('name'=>'DURBAN Shops','stores_id'=>rand(1,4)),
             array('name'=>'SOWETO Shops','stores_id'=>rand(1,4)),
 
