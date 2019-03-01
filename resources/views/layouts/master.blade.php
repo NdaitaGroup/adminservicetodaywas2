@@ -191,7 +191,14 @@
                             </p>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="{{route('answered')}}" class="nav-link {{Request::is('answered')?'active':''}}">
+                            <i class="nav-icon fa fa-align-justify"></i>
+                            <p>
+                                Answered Questionnaires
+                            </p>
+                        </a>
+                    </li>
                      <li class="nav-item">
                         <a href="{{route('comments')}}" class="nav-link {{Request::is('comments')?'active':''}}">
                             <i class="nav-icon fa fa-comments"></i>

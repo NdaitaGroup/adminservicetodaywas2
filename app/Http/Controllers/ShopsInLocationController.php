@@ -9,6 +9,9 @@ use App\Stores;
 use App\LocationShop;
 class ShopsInLocationController extends Controller
 {
+    protected function guard() {
+        $this->middleware('auth:web');
+    }
     public function index()
     {
 

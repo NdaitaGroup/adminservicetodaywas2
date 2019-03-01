@@ -7,6 +7,7 @@ use App\Stores;
 use Session;
 class StoreController extends Controller
 {
+
     public function index(){
         $stores = Stores::paginate(10);
         return view('Admin.stores',compact('stores'));
@@ -23,5 +24,8 @@ class StoreController extends Controller
         Session::flash('success','Store is successfully added.');
 
         return redirect()->back();
+    }
+    protected function guard() {
+        $this->middleware('auth:web');
     }
 }

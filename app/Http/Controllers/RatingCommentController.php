@@ -7,6 +7,9 @@ use App\RatingComment;
 use Session;
 class RatingCommentController extends Controller
 {
+    protected function guard() {
+        $this->middleware('auth:web');
+    }
     public function getStats(){
 
         $firstday = date('Y-m-01');
@@ -47,23 +50,5 @@ class RatingCommentController extends Controller
         $comments = $comments->paginate(10);
         return view('Admin.comments',compact('comments'));
     }
-    public function store(Request $request) {
 
-        $this->validate($request,[
-                'otp'=>['required'],
-                'comment'=>['required'],
-            ]);
-
-        RatingComment::create([
-                'comments'=>$request->comment,
-                'otp'=>$request->otp,
-                'shops_in_locations_id'=>rand(1,15),
-                'comment_date'=>\Carbon\Carbon::now(),
-                'status'=>'complete',
-
-            ]);
-
-        Session::flash('success','Thank you for your comments, Please comeback again soon!');
-        return redirect()->back();
-    }
 }

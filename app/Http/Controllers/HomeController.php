@@ -46,4 +46,5 @@ class HomeController extends Controller
 
         return view('Admin.home',compact('comments','questionCount','commentsCount','usersCount','ratingCount'));
     }
+
 }

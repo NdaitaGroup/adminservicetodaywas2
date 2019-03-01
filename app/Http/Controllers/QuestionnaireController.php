@@ -8,8 +8,8 @@ class QuestionnaireController extends Controller
 {
     //
 
-    public function __construct()
-    {
+    protected function guard() {
+        $this->middleware('auth:web');
     }
     public function index()
     {
@@ -22,11 +22,11 @@ class QuestionnaireController extends Controller
         $questionnaire = $this->validate($request, [
             'questionnaire' => ['required', 'string','min:10', 'max:255'],
 
-
         ]);
         $questionnaire = array_merge($questionnaire,array('shops_in_locations_id'=> auth()->user()->shops_in_locations_id));
         Questionnaire::create($questionnaire);
 
         return redirect()->back();
     }
+
 }

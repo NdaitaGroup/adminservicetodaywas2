@@ -17,6 +17,11 @@ Route::get('/',function (){
 });
 
 Auth::routes();
+/*
+Route::group(['middleware'=>'web'], function() {
+    Route::post('login', 'AuthController@login');
+
+});*/
 //----------------------------------------------------------------------------------------------------
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -30,7 +35,7 @@ Route::post('/save-questionnaire','QuestionnaireController@store')->name('save.q
 //----------------------------------------------------------------------------------------------------
 Route::get('/getStats','RatingCommentController@getStats');
 Route::get('/comments','RatingCommentController@comments')->name('comments');
-Route::post('/save-comments','RatingCommentController@store')->name('save.comments');
+Route::post('/save-comments','frontEndController@store')->name('save.comments');
 //-------------------------------------Users Starts Here----------------------------------------------
 Route::get('/add-user','UsersController@create')->name('add.user');
 Route::get('/add-storeUsers','UsersController@createUsers')->name('add.storeUsers');
@@ -42,3 +47,5 @@ Route::post('/add-store','StoreController@addStore')->name('add.store');
 //----------------------------------------------------------------------------------------------------
 Route::get('/places','ShopsInLocationController@index')->name('places');
 Route::post('/save-place','ShopsInLocationController@store')->name('save.place');
+//----------------------------------------------------------------------------------------------------
+Route::get('/answered','QuestionnaireAnswersController@index')->name('answered');
