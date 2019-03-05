@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Rating System</title>
+    <title>TSW</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -149,7 +149,7 @@
         <a href="{{route('home')}}" class="brand-link">
             <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">Rating System</span>
+            <span class="brand-text font-weight-light">TSW</span>
         </a>
 
         <!-- Sidebar -->
@@ -335,9 +335,7 @@
     @if(Session::has('success'))
         toastr.success("{{Session::get('success')}}");
     @endif
-    @if(Session::has('error'))
-            toastr.error("{{Session::get('error')}}");
-            @endif
+
     var ctx = document.getElementById("myChart");
     var ctx2 = document.getElementById("myChart2");
 

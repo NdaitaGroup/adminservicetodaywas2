@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestionnaireResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Questionnaire;
@@ -25,7 +26,7 @@ class mobileApiController extends Controller
             return response()->json(['error'=>'unauthorized'],400);
         }
 
-        return $questions;
+        return QuestionnaireResource::collection($questions);
     }
     public function get_answers(Request $request) {
         $token = JWTAuth::getToken();

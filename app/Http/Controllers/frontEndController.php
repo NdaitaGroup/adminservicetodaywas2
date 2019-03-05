@@ -7,7 +7,7 @@ use App\RatingComment;
 use Session;
 class frontEndController extends Controller
 {
-  
+
     public function store(Request $request) {
 
         $this->validate($request,[
@@ -29,6 +29,7 @@ class frontEndController extends Controller
             $comment->save();
             $message = "Thank you for your comments, Please comeback again soon!";
         }
+
 
 
         Session::flash('success',$message);
