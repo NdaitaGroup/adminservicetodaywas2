@@ -35,6 +35,7 @@ Route::post('/save-questionnaire','QuestionnaireController@store')->name('save.q
 //----------------------------------------------------------------------------------------------------
 Route::get('/getStats','RatingCommentController@getStats');
 Route::get('/comments','RatingCommentController@comments')->name('comments');
+Route::get('/hello','RatingCommentController@hello')->name('hello');
 Route::post('/save-comments','frontEndController@store')->name('save.comments');
 //-------------------------------------Users Starts Here----------------------------------------------
 Route::get('/add-user','UsersController@create')->name('add.user');

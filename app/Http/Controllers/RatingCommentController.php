@@ -50,5 +50,7 @@ class RatingCommentController extends Controller
         $comments = $comments->paginate(10);
         return view('Admin.comments',compact('comments'));
     }
-
+    public function hello(){
+        return RatingComment::find(1);
+    }
 }
