@@ -38,6 +38,7 @@ Route::get('/comments','RatingCommentController@comments')->name('comments');
 Route::get('/hello','RatingCommentController@hello')->name('hello');
 Route::post('/save-comments','frontEndController@store')->name('save.comments');
 //-------------------------------------Users Starts Here----------------------------------------------
+Route::get('/users','UsersController@index')->name('users');
 Route::get('/add-user','UsersController@create')->name('add.user');
 Route::get('/add-storeUsers','UsersController@createUsers')->name('add.storeUsers');
 Route::post('/add-superUser','UsersController@addSuperUser')->name('add.Superuser');

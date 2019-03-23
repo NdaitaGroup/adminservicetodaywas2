@@ -224,6 +224,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('users')}}" class="nav-link {{Request::is('users')?'active':''}}">
+                                <i class="nav-icon fa fa-users"></i>
+                                <p>
+                                   Users
+                                </p>
+                            </a>
+                        </li>
                     <li class="nav-item">
                         <a href="{{route('stores')}}" class="nav-link {{Request::is('stores')?'active':''}}">
                             <i class="nav-icon fa fa-apple"></i>

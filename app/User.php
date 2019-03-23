@@ -28,8 +28,9 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+    protected $with = ['ShopsInLocation'];
     public function ShopsInLocation(){
-        return $this->belongsTo(\App\ShopsInLocation::class);
+        return $this->belongsTo(\App\ShopsInLocation::class,'shops_in_locations_id');
     }
     public function getJWTIdentifier()
     {

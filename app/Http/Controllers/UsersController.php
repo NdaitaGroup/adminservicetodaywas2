@@ -10,6 +10,12 @@ use App\User;
 use Session;
 class UsersController extends Controller
 {
+
+    public function index(){
+        $users = User::where('user_type','!=','Super')->paginate(10);
+
+        return view('Admin.users',compact('users'));
+    }
     public function create(){
 
 

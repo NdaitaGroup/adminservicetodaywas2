@@ -32,7 +32,7 @@
             <div class="card shadow">
 
             <div class="card-header shadow">
-                <h1 class="text-center ">Admin Panel</h1>
+                <h1 class="text-center ">TSW Admin Panel</h1>
             </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
