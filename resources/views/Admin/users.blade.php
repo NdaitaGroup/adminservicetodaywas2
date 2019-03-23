@@ -43,7 +43,7 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->ShopsInLocation->LocationShop->stores->name}}</td>
-                                            <td>{{$user->ShopsInLocation->LocationShop->name}} ({{$user->ShopsInLocation->name}})</td>
+                                            <td>{{$user->ShopsInLocation->LocationShop->name}} </td>
                                         </tr>
                                     @endforeach
                             </tbody>
