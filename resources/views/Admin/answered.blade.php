@@ -30,7 +30,7 @@
 
                         <table class="table table-hover table-bordered table-stripped">
                             <thead>
-                            <th style="background:#9fb731;">Store</th>
+                            <th >Store</th>
                             <th>Location</th>
                             <th>Question</th>
                             <th>Answer</th>

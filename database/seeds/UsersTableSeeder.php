@@ -30,9 +30,21 @@ class UsersTableSeeder extends Seeder
             'shops_in_locations_id'=>$location->id,
         ]);
         \App\User::create(['name'=>'Gordon Matshwane',
-            'email'=>'gordonm87@gmail.com',
+            'email'=>'
+            
+            ',
             'password'=>bcrypt('secret'),
             'user_type'=>'Admin',
+            'shops_in_locations_id'=>$location->id,
+        ]);
+
+        //Pmulatedzi@gmail.com
+
+
+        \App\User::create(['name'=>'P Mulatedzi',
+            'email'=>'Pmulatedzi@gmail.com',
+            'password'=>bcrypt('secret'),
+            'user_type'=>'Manager',
             'shops_in_locations_id'=>$location->id,
         ]);
     }
