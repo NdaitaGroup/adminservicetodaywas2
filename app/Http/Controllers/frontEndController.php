@@ -51,10 +51,8 @@ class frontEndController extends Controller
         $comments = RatingComment::where('status','complete')->where('shops_in_locations_id',1)->count();
 
         $rating = ShopsInLocation::find(1);
-        return $rating;
-        /*
-        $rating = $rating->rating + $comments;
-        $rating->save();*/
+       $rating->rating = $rating->rating + $comments;
+       $rating->save();
 
     }
 }
