@@ -35,4 +35,9 @@ class frontEndController extends Controller
         Session::flash('success',$message);
         return redirect()->back();
     }
+
+    public function getVideo(){
+
+        return asset('videos/swit.mp4');
+    }
 }

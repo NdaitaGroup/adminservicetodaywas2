@@ -21,8 +21,8 @@ class QuestionnaireAnswersController extends Controller
 
             $answers = QuestionnaireAnswers::whereHas('Questions',function ($query){
                 $query->where('shops_in_locations_id',auth()->user()->shops_in_locations_id);
-            })->
-            whereBetween('created_at',array($firstday,$lastday));
+            });//->
+            //whereBetween('created_at',array($firstday,$lastday));
         }
         $answers  = $answers->paginate(10);
         return view('Admin.answered',compact('answers'));

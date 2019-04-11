@@ -51,3 +51,4 @@ Route::get('/places','ShopsInLocationController@index')->name('places');
 Route::post('/save-place','ShopsInLocationController@store')->name('save.place');
 //----------------------------------------------------------------------------------------------------
 Route::get('/answered','QuestionnaireAnswersController@index')->name('answered');
+Route::get('/getVideo','frontEndController@getVideo');
