@@ -31,7 +31,9 @@ Route::get('/location','LocationShopController@locations')->name('location');
 Route::post('/save-location','LocationShopController@store')->name('save.location');
 //----------------------------------------------------------------------------------------------------
 Route::get('/questionnaire','QuestionnaireController@index')->name('questionnaire');
+Route::get('/questionnaire-edit/{id}','QuestionnaireController@edit')->name('edit.questionnaire');
 Route::post('/save-questionnaire','QuestionnaireController@store')->name('save.questionnaire');
+Route::post('/questionnaire-update/{id}','QuestionnaireController@update')->name('update.questionnaire');
 //----------------------------------------------------------------------------------------------------
 Route::get('/getStats','RatingCommentController@getStats');
 Route::get('/comments','RatingCommentController@comments')->name('comments');

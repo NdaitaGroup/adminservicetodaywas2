@@ -197,7 +197,7 @@
         <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
+
     @yield('content')
     <!-- /.content-wrapper -->
 

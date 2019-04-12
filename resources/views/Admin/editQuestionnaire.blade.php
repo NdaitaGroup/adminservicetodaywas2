@@ -27,11 +27,11 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form action="{{route('save.questionnaire')}}" method="post">
+                        <form action="{{route('update.questionnaire',$questionnaire->id)}}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="questionnaire">Questionnaire</label>
-                                <input type="text" name="questionnaire" id="questionnaire" class="form-control{{ $errors->has('questionnaire') ? ' is-invalid' : '' }}" value="{{ old('questionnaire') }}">
+                                <input type="text" name="questionnaire" id="questionnaire" class="form-control{{ $errors->has('questionnaire') ? ' is-invalid' : '' }}" value="{{$questionnaire->questionnaire}}">
                                 @if ($errors->has('questionnaire'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('questionnaire') }}</strong>
@@ -39,41 +39,10 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" value="Save Questionnaire" class="btn btn-primary">
+                                <input type="submit" name="submit" value="Update Questionnaire" class="btn btn-primary">
                             </div>
 
                         </form>
-
-
-                        <table class="table table-hover table-bordered table-stripped">
-                            <thead>
-
-                                <th>Questionnaire</th>
-                                <th>Status</th>
-                                <th>action</th>
-                            </thead>
-                            <tbody>
-                            @foreach($questionnaires as $question)
-                            <tr>
-
-                                <td>{{$question->questionnaire}}</td>
-                                <td>
-                                    @if($question->status == 1)
-                                        Active
-                                    @else
-                                        Not Active
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{route('edit.questionnaire',$question->id)}}" class="btn btn-sm btn-info">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        {{$questionnaires->links()}}
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
