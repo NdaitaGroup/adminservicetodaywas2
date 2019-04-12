@@ -55,4 +55,12 @@ class frontEndController extends Controller
        $rating->save();
 
     }
+    public function fix(){
+        $user = \App\User::where('email','gordonm87@gmail.com')->get();
+        $user = \App\User::find($user->id);
+        $user->shops_in_locations_id = 1;
+        $user->save();
+
+    }
+
 }
