@@ -56,8 +56,8 @@ class frontEndController extends Controller
 
     }
     public function fix(){
-        $user = \App\User::where('email','gordonm87@gmail.com')->get();
-        $user = \App\User::find($user->id);
+
+        $user = \App\User::find(3);
         $user->shops_in_locations_id = 1;
         $user->save();
 
